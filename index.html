@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task Management</h1>
+      <div class="add-task">
+        <input type="text" id="task-input" placeholder="Enter new task..." />
+        <button id="add-task-btn">Add Task</button>
+      </div>
+
+      <div class="task-lists">
+        <div
+          class="task-list"
+          id="todo"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <h2>To Do</h2>
+          <ul id="todo-list"></ul>
+        </div>
+        <div
+          class="task-list"
+          id="in-progress"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <h2>In Progress</h2>
+          <ul id="in-progress-list"></ul>
+        </div>
+        <div
+          class="task-list"
+          id="done"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <h2>Done</h2>
+          <ul id="done-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
