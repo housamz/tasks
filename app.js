@@ -4,6 +4,14 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const todoList = document.getElementById("todo-list");
 const inProgressList = document.getElementById("in-progress-list");
 const doneList = document.getElementById("done-list");
+const quoteDisplay = document.createElement("p");
+
+quoteDisplay.className = "quote-display";
+
+// Append quoteDisplay below task management area
+document
+  .querySelector(".container")
+  .insertBefore(quoteDisplay, document.querySelector(".task-lists"));
 
 // Event listener for adding tasks
 addTaskBtn.addEventListener("click", () => {
@@ -11,6 +19,7 @@ addTaskBtn.addEventListener("click", () => {
   if (taskText) {
     addTaskToList(taskText, "todo");
     taskInput.value = ""; // Clear input field
+    fetchRandomQuote(); // Fetch a new quote when a task is added
   }
 });
 
@@ -91,3 +100,17 @@ function loadTasks() {
 
 // Load saved tasks when the page is loaded
 loadTasks();
+
+// Fetch a random quote and display it
+function fetchRandomQuote() {
+  fetch("https://api.adviceslip.com/advice")
+    .then((response) => response.json())
+    .then((data) => {
+      const quoteText = `${data.slip.advice}`;
+      quoteDisplay.textContent = `"${quoteText}"`;
+    })
+    .catch((error) => {
+      console.error("Error fetching quote:", error);
+      quoteDisplay.textContent = "Could not fetch quote at the moment.";
+    });
+}
